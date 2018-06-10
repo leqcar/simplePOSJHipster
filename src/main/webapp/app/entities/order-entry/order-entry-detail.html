@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span>Order Entry</span> {{vm.orderEntry.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Service Id</span></dt>
+        <dd>
+            <span>{{vm.orderEntry.serviceId}}</span>
+        </dd>
+        <dt><span>Service Type</span></dt>
+        <dd>
+            <span>{{vm.orderEntry.serviceType}}</span>
+        </dd>
+        <dt><span>Transaction Date</span></dt>
+        <dd>
+            <span>{{vm.orderEntry.transactionDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Paid Flag</span></dt>
+        <dd>
+            <span>{{vm.orderEntry.paidFlag}}</span>
+        </dd>
+        <dt><span>Total Amount</span></dt>
+        <dd>
+            <span>{{vm.orderEntry.totalAmount}}</span>
+        </dd>
+        <dt><span>Customer</span></dt>
+        <dd>
+            <a ui-sref="customer-detail({id:vm.orderEntry.customer.id})">{{vm.orderEntry.customer.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="order-entry-detail.edit({id:vm.orderEntry.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down"> Edit</span>
+    </button>
+</div>

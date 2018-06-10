@@ -1,0 +1,78 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myOrderItemLabel">Create or edit a Order Item</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.orderItem.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.orderItem.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_itemCode">Item Code</label>
+            <input type="text" class="form-control" name="itemCode" id="field_itemCode"
+                    ng-model="vm.orderItem.itemCode"
+                    required/>
+            <div ng-show="editForm.itemCode.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.itemCode.$error.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_price">Price</label>
+            <input type="number" class="form-control" name="price" id="field_price"
+                    ng-model="vm.orderItem.price"
+                    required/>
+            <div ng-show="editForm.price.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.price.$error.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.price.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_quantity">Quantity</label>
+            <input type="number" class="form-control" name="quantity" id="field_quantity"
+                    ng-model="vm.orderItem.quantity"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_amount">Amount</label>
+            <input type="number" class="form-control" name="amount" id="field_amount"
+                    ng-model="vm.orderItem.amount"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label for="field_orderEntry">Order Entry</label>
+            <select class="form-control" id="field_orderEntry" name="orderEntry" ng-model="vm.orderItem.orderEntry" ng-options="orderEntry as orderEntry.id for orderEntry in vm.orderentries track by orderEntry.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_product">Product</label>
+            <select class="form-control" id="field_product" name="product" ng-model="vm.orderItem.product" ng-options="product as product.code for product in vm.products | orderBy:'id' track by product.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

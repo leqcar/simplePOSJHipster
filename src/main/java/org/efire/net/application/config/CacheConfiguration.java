@@ -40,6 +40,11 @@ public class CacheConfiguration {
             cm.createCache(org.efire.net.application.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(org.efire.net.application.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(org.efire.net.application.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
+            cm.createCache(org.efire.net.application.domain.OrderEntry.class.getName(), jcacheConfiguration);
+            cm.createCache(org.efire.net.application.domain.OrderEntry.class.getName() + ".orderItems", jcacheConfiguration);
+            cm.createCache(org.efire.net.application.domain.OrderItem.class.getName(), jcacheConfiguration);
+            cm.createCache(org.efire.net.application.domain.Product.class.getName(), jcacheConfiguration);
+            cm.createCache(org.efire.net.application.domain.Customer.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -1,0 +1,70 @@
+<div>
+    <h2>Order Items</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="order-item.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span >
+                        Create new Order Item
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span>Item Code</span></th>
+                    <th><span>Price</span></th>
+                    <th><span>Quantity</span></th>
+                    <th><span>Amount</span></th>
+                    <th><span>Order Entry</span></th>
+                    <th><span>Product</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="orderItem in vm.orderItems track by orderItem.id">
+                    <td><a ui-sref="order-item-detail({id:orderItem.id})">{{orderItem.id}}</a></td>
+                    <td>{{orderItem.itemCode}}</td>
+                    <td>{{orderItem.price}}</td>
+                    <td>{{orderItem.quantity}}</td>
+                    <td>{{orderItem.amount}}</td>
+                    <td>
+                        <a ui-sref="order-entry-detail({id:orderItem.orderEntry.id})">{{orderItem.orderEntry.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="product-detail({id:orderItem.product.id})">{{orderItem.product.code}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="order-item-detail({id:orderItem.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="order-item.edit({id:orderItem.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="order-item.delete({id:orderItem.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

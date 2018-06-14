@@ -95,7 +95,6 @@ public class OrderEntryResourceIntTest {
      */
     public static OrderEntry createEntity(EntityManager em) {
         OrderEntry orderEntry = new OrderEntry()
-            .serviceId(DEFAULT_SERVICE_ID)
             .serviceType(DEFAULT_SERVICE_TYPE)
             .transactionDate(DEFAULT_TRANSACTION_DATE)
             .paidFlag(DEFAULT_PAID_FLAG)
@@ -123,7 +122,6 @@ public class OrderEntryResourceIntTest {
         List<OrderEntry> orderEntryList = orderEntryRepository.findAll();
         assertThat(orderEntryList).hasSize(databaseSizeBeforeCreate + 1);
         OrderEntry testOrderEntry = orderEntryList.get(orderEntryList.size() - 1);
-        assertThat(testOrderEntry.getServiceId()).isEqualTo(DEFAULT_SERVICE_ID);
         assertThat(testOrderEntry.getServiceType()).isEqualTo(DEFAULT_SERVICE_TYPE);
         assertThat(testOrderEntry.getTransactionDate()).isEqualTo(DEFAULT_TRANSACTION_DATE);
         assertThat(testOrderEntry.isPaidFlag()).isEqualTo(DEFAULT_PAID_FLAG);
@@ -149,23 +147,6 @@ public class OrderEntryResourceIntTest {
         assertThat(orderEntryList).hasSize(databaseSizeBeforeCreate);
     }
 
-    @Test
-    @Transactional
-    public void checkServiceIdIsRequired() throws Exception {
-        int databaseSizeBeforeTest = orderEntryRepository.findAll().size();
-        // set the field null
-        orderEntry.setServiceId(null);
-
-        // Create the OrderEntry, which fails.
-
-        restOrderEntryMockMvc.perform(post("/api/order-entries")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(orderEntry)))
-            .andExpect(status().isBadRequest());
-
-        List<OrderEntry> orderEntryList = orderEntryRepository.findAll();
-        assertThat(orderEntryList).hasSize(databaseSizeBeforeTest);
-    }
 
     @Test
     @Transactional
@@ -178,7 +159,6 @@ public class OrderEntryResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(orderEntry.getId().intValue())))
-            .andExpect(jsonPath("$.[*].serviceId").value(hasItem(DEFAULT_SERVICE_ID.toString())))
             .andExpect(jsonPath("$.[*].serviceType").value(hasItem(DEFAULT_SERVICE_TYPE.toString())))
             .andExpect(jsonPath("$.[*].transactionDate").value(hasItem(DEFAULT_TRANSACTION_DATE.toString())))
             .andExpect(jsonPath("$.[*].paidFlag").value(hasItem(DEFAULT_PAID_FLAG.booleanValue())))
@@ -196,7 +176,6 @@ public class OrderEntryResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(orderEntry.getId().intValue()))
-            .andExpect(jsonPath("$.serviceId").value(DEFAULT_SERVICE_ID.toString()))
             .andExpect(jsonPath("$.serviceType").value(DEFAULT_SERVICE_TYPE.toString()))
             .andExpect(jsonPath("$.transactionDate").value(DEFAULT_TRANSACTION_DATE.toString()))
             .andExpect(jsonPath("$.paidFlag").value(DEFAULT_PAID_FLAG.booleanValue()))
@@ -223,7 +202,6 @@ public class OrderEntryResourceIntTest {
         // Disconnect from session so that the updates on updatedOrderEntry are not directly saved in db
         em.detach(updatedOrderEntry);
         updatedOrderEntry
-            .serviceId(UPDATED_SERVICE_ID)
             .serviceType(UPDATED_SERVICE_TYPE)
             .transactionDate(UPDATED_TRANSACTION_DATE)
             .paidFlag(UPDATED_PAID_FLAG)
@@ -238,7 +216,6 @@ public class OrderEntryResourceIntTest {
         List<OrderEntry> orderEntryList = orderEntryRepository.findAll();
         assertThat(orderEntryList).hasSize(databaseSizeBeforeUpdate);
         OrderEntry testOrderEntry = orderEntryList.get(orderEntryList.size() - 1);
-        assertThat(testOrderEntry.getServiceId()).isEqualTo(UPDATED_SERVICE_ID);
         assertThat(testOrderEntry.getServiceType()).isEqualTo(UPDATED_SERVICE_TYPE);
         assertThat(testOrderEntry.getTransactionDate()).isEqualTo(UPDATED_TRANSACTION_DATE);
         assertThat(testOrderEntry.isPaidFlag()).isEqualTo(UPDATED_PAID_FLAG);

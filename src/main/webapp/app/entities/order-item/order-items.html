@@ -20,9 +20,9 @@
                 <tr>
                     <th><span>ID</span></th>
                     <th><span>Item Code</span></th>
-                    <th><span>Price</span></th>
+                    <th><span>Item Name</span></th>
                     <th><span>Quantity</span></th>
-                    <th><span>Amount</span></th>
+                    <th><span>Unit Price</span></th>
                     <th><span>Order Entry</span></th>
                     <th><span>Product</span></th>
                     <th></th>
@@ -32,9 +32,9 @@
                 <tr ng-repeat="orderItem in vm.orderItems track by orderItem.id">
                     <td><a ui-sref="order-item-detail({id:orderItem.id})">{{orderItem.id}}</a></td>
                     <td>{{orderItem.itemCode}}</td>
-                    <td>{{orderItem.price}}</td>
+                    <td>{{orderItem.itemName}}</td>
                     <td>{{orderItem.quantity}}</td>
-                    <td>{{orderItem.amount}}</td>
+                    <td>{{orderItem.unitAmount}}</td>
                     <td>
                         <a ui-sref="order-entry-detail({id:orderItem.orderEntry.id})">{{orderItem.orderEntry.id}}</a>
                     </td>

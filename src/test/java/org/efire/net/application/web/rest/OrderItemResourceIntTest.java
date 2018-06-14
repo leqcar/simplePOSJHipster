@@ -1,11 +1,9 @@
 package org.efire.net.application.web.rest;
 
 import org.efire.net.application.SimplePosjHipsterApp;
-
 import org.efire.net.application.domain.OrderItem;
 import org.efire.net.application.repository.OrderItemRepository;
 import org.efire.net.application.web.rest.errors.ExceptionTranslator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,8 +22,8 @@ import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.efire.net.application.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.efire.net.application.web.rest.TestUtil.createFormattingConversionService;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -41,6 +39,8 @@ public class OrderItemResourceIntTest {
 
     private static final String DEFAULT_ITEM_CODE = "AAAAAAAAAA";
     private static final String UPDATED_ITEM_CODE = "BBBBBBBBBB";
+    private static final String DEFAULT_ITEM_NAME = "CCCCCCCCCC";
+    private static final String UPDATED_ITEM_NAME = "DDDDDDDDDD";
 
     private static final BigDecimal DEFAULT_PRICE = new BigDecimal(1);
     private static final BigDecimal UPDATED_PRICE = new BigDecimal(2);
@@ -90,9 +90,9 @@ public class OrderItemResourceIntTest {
     public static OrderItem createEntity(EntityManager em) {
         OrderItem orderItem = new OrderItem()
             .itemCode(DEFAULT_ITEM_CODE)
-            .price(DEFAULT_PRICE)
+            .itemName(DEFAULT_ITEM_NAME)
             .quantity(DEFAULT_QUANTITY)
-            .amount(DEFAULT_AMOUNT);
+            .unitAmount(DEFAULT_AMOUNT);
         return orderItem;
     }
 
@@ -117,9 +117,9 @@ public class OrderItemResourceIntTest {
         assertThat(orderItemList).hasSize(databaseSizeBeforeCreate + 1);
         OrderItem testOrderItem = orderItemList.get(orderItemList.size() - 1);
         assertThat(testOrderItem.getItemCode()).isEqualTo(DEFAULT_ITEM_CODE);
-        assertThat(testOrderItem.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testOrderItem.getItemName()).isEqualTo(DEFAULT_ITEM_NAME);
         assertThat(testOrderItem.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
-        assertThat(testOrderItem.getAmount()).isEqualTo(DEFAULT_AMOUNT);
+        assertThat(testOrderItem.getUnitAmount()).isEqualTo(DEFAULT_AMOUNT);
     }
 
     @Test
@@ -161,10 +161,10 @@ public class OrderItemResourceIntTest {
 
     @Test
     @Transactional
-    public void checkPriceIsRequired() throws Exception {
+    public void checkItemNameIsRequired() throws Exception {
         int databaseSizeBeforeTest = orderItemRepository.findAll().size();
         // set the field null
-        orderItem.setPrice(null);
+        orderItem.setItemName(null);
 
         // Create the OrderItem, which fails.
 
@@ -189,9 +189,8 @@ public class OrderItemResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(orderItem.getId().intValue())))
             .andExpect(jsonPath("$.[*].itemCode").value(hasItem(DEFAULT_ITEM_CODE.toString())))
-            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)))
-            .andExpect(jsonPath("$.[*].amount").value(hasItem(DEFAULT_AMOUNT.intValue())));
+            .andExpect(jsonPath("$.[*].unitAmount").value(hasItem(DEFAULT_AMOUNT.intValue())));
     }
 
     @Test
@@ -206,9 +205,8 @@ public class OrderItemResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(orderItem.getId().intValue()))
             .andExpect(jsonPath("$.itemCode").value(DEFAULT_ITEM_CODE.toString()))
-            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.intValue()))
             .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY))
-            .andExpect(jsonPath("$.amount").value(DEFAULT_AMOUNT.intValue()));
+            .andExpect(jsonPath("$.unitAmount").value(DEFAULT_AMOUNT.intValue()));
     }
 
     @Test
@@ -232,9 +230,9 @@ public class OrderItemResourceIntTest {
         em.detach(updatedOrderItem);
         updatedOrderItem
             .itemCode(UPDATED_ITEM_CODE)
-            .price(UPDATED_PRICE)
+            .itemName(UPDATED_ITEM_NAME)
             .quantity(UPDATED_QUANTITY)
-            .amount(UPDATED_AMOUNT);
+            .unitAmount(UPDATED_AMOUNT);
 
         restOrderItemMockMvc.perform(put("/api/order-items")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -246,9 +244,8 @@ public class OrderItemResourceIntTest {
         assertThat(orderItemList).hasSize(databaseSizeBeforeUpdate);
         OrderItem testOrderItem = orderItemList.get(orderItemList.size() - 1);
         assertThat(testOrderItem.getItemCode()).isEqualTo(UPDATED_ITEM_CODE);
-        assertThat(testOrderItem.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testOrderItem.getQuantity()).isEqualTo(UPDATED_QUANTITY);
-        assertThat(testOrderItem.getAmount()).isEqualTo(UPDATED_AMOUNT);
+        assertThat(testOrderItem.getUnitAmount()).isEqualTo(UPDATED_AMOUNT);
     }
 
     @Test

@@ -7,18 +7,12 @@
         Added the constraints for entity OrderItem.
     -->
     <changeSet id="20180610204052-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="order_entry_id"
                                  baseTableName="order_item"
                                  constraintName="fk_order_item_order_entry_id"
                                  referencedColumnNames="id"
                                  referencedTableName="order_entry"/>
-
-        <addForeignKeyConstraint baseColumnNames="product_id"
-                                 baseTableName="order_item"
-                                 constraintName="fk_order_item_product_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="product"/>
 
     </changeSet>
 </databaseChangeLog>

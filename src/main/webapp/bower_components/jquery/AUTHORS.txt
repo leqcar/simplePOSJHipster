@@ -197,7 +197,7 @@ Eddie Monge <eddie@eddiemonge.com>
 Terry Jones <terry@jon.es>
 Jason Merino <jasonmerino@gmail.com>
 Jeremy Dunck <jdunck@gmail.com>
-Chris Price <price.c@gmail.com>
+Chris Price <unitPrice.c@gmail.com>
 Guy Bedford <guybedford@gmail.com>
 Amey Sakhadeo <me@ameyms.com>
 Mike Sidorov <mikes.ekb@gmail.com>

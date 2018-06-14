@@ -118,7 +118,7 @@ public class ProductResourceIntTest {
         Product testProduct = productList.get(productList.size() - 1);
         assertThat(testProduct.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testProduct.getProductName()).isEqualTo(DEFAULT_PRODUCT_NAME);
-        assertThat(testProduct.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testProduct.getUnitPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testProduct.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
     }
 
@@ -154,7 +154,6 @@ public class ProductResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(product.getId().intValue())))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE.toString())))
             .andExpect(jsonPath("$.[*].productName").value(hasItem(DEFAULT_PRODUCT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY)));
     }
 
@@ -171,7 +170,7 @@ public class ProductResourceIntTest {
             .andExpect(jsonPath("$.id").value(product.getId().intValue()))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE.toString()))
             .andExpect(jsonPath("$.productName").value(DEFAULT_PRODUCT_NAME.toString()))
-            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.intValue()))
+            .andExpect(jsonPath("$.unitPrice").value(DEFAULT_PRICE.intValue()))
             .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY));
     }
 
@@ -211,7 +210,7 @@ public class ProductResourceIntTest {
         Product testProduct = productList.get(productList.size() - 1);
         assertThat(testProduct.getCode()).isEqualTo(UPDATED_CODE);
         assertThat(testProduct.getProductName()).isEqualTo(UPDATED_PRODUCT_NAME);
-        assertThat(testProduct.getPrice()).isEqualTo(UPDATED_PRICE);
+        assertThat(testProduct.getUnitPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testProduct.getQuantity()).isEqualTo(UPDATED_QUANTITY);
     }
 

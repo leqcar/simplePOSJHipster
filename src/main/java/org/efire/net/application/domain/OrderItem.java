@@ -4,8 +4,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -29,21 +28,18 @@ public class OrderItem implements Serializable {
     private String itemCode;
 
     @NotNull
-    @Column(name = "price", precision=10, scale=2, nullable = false)
-    private BigDecimal price;
+    @Column(name = "item_name", nullable = false)
+    private String itemName;
 
     @Column(name = "quantity")
     private Integer quantity;
 
-    @Column(name = "amount", precision=10, scale=2)
-    private BigDecimal amount;
+    @Column(name = "unit_amount", precision=10, scale=2)
+    private BigDecimal unitAmount;
 
     @ManyToOne
     private OrderEntry orderEntry;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Product product;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -67,19 +63,6 @@ public class OrderItem implements Serializable {
         this.itemCode = itemCode;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public OrderItem price(BigDecimal price) {
-        this.price = price;
-        return this;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
     public Integer getQuantity() {
         return quantity;
     }
@@ -93,17 +76,17 @@ public class OrderItem implements Serializable {
         this.quantity = quantity;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public BigDecimal getUnitAmount() {
+        return unitAmount;
     }
 
-    public OrderItem amount(BigDecimal amount) {
-        this.amount = amount;
+    public OrderItem unitAmount(BigDecimal amount) {
+        this.unitAmount = amount;
         return this;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+    public void setUnitAmount(BigDecimal unitAmount) {
+        this.unitAmount = unitAmount;
     }
 
     public OrderEntry getOrderEntry() {
@@ -119,19 +102,20 @@ public class OrderItem implements Serializable {
         this.orderEntry = orderEntry;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public OrderItem product(Product product) {
-        this.product = product;
+    public OrderItem itemName(String itemName) {
+        this.itemName = itemName;
         return this;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public String getItemName() {
+        return itemName;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+// jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
@@ -158,9 +142,8 @@ public class OrderItem implements Serializable {
         return "OrderItem{" +
             "id=" + getId() +
             ", itemCode='" + getItemCode() + "'" +
-            ", price=" + getPrice() +
             ", quantity=" + getQuantity() +
-            ", amount=" + getAmount() +
+            ", unitAmount=" + getUnitAmount() +
             "}";
     }
 }

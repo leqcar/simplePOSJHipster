@@ -26,7 +26,7 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="price" type="decimal(10,2)">
+            <column name="item_name" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
 
@@ -34,19 +34,16 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="amount" type="decimal(10,2)">
+            <column name="unit_amount" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
             <column name="order_entry_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="product_id" type="bigint">
-                <constraints unique="true" nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

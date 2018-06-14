@@ -95,9 +95,9 @@
                     resolve: {
                         entity: function () {
                             return {
-                                serviceId: null,
                                 serviceType: null,
                                 transactionDate: null,
+                                paymentStatus: null,
                                 paidFlag: null,
                                 totalAmount: null,
                                 id: null

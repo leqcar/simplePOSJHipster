@@ -22,15 +22,16 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="service_id" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
 
             <column name="service_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
             <column name="transaction_date" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="payment_status" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
 
@@ -46,7 +47,7 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>

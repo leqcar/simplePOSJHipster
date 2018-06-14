@@ -97,6 +97,7 @@
                             return {
                                 code: null,
                                 productName: null,
+                                productCategory: null,
                                 price: null,
                                 quantity: null,
                                 id: null

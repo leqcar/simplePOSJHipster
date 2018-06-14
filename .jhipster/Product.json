@@ -11,7 +11,12 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "price",
+            "fieldName": "productCategory",
+            "fieldType": "ProductCategory",
+            "fieldValues": "SERVICE_WASH,SERVICE_DRY,CHEMICAL,SPIN_DRY,PLASTIC,SERVICE_FOLD"
+        },
+        {
+            "fieldName": "unitPrice",
             "fieldType": "BigDecimal"
         },
         {

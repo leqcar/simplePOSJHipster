@@ -18,10 +18,10 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span>ID</span></th>
-                    <th><span>Service Id</span></th>
+                    <th><span>Service ID</span></th>
                     <th><span>Service Type</span></th>
                     <th><span>Transaction Date</span></th>
+                    <th><span>Payment Status</span></th>
                     <th><span>Paid Flag</span></th>
                     <th><span>Total Amount</span></th>
                     <th><span>Customer</span></th>
@@ -31,9 +31,9 @@
             <tbody>
                 <tr ng-repeat="orderEntry in vm.orderEntries track by orderEntry.id">
                     <td><a ui-sref="order-entry-detail({id:orderEntry.id})">{{orderEntry.id}}</a></td>
-                    <td>{{orderEntry.serviceId}}</td>
                     <td>{{orderEntry.serviceType}}</td>
                         <td>{{orderEntry.transactionDate | date:'mediumDate'}}</td>
+                    <td>{{orderEntry.paymentStatus}}</td>
                     <td>{{orderEntry.paidFlag}}</td>
                     <td>{{orderEntry.totalAmount}}</td>
                     <td>

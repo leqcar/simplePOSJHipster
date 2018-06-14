@@ -1,6 +1,7 @@
 package org.efire.net.application.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.efire.net.application.domain.enumeration.PaymentStatus;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -30,16 +31,16 @@ public class OrderEntry implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Column(name = "service_id", nullable = false)
-    private String serviceId;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "service_type")
     private ServiceType serviceType;
 
     @Column(name = "transaction_date")
     private LocalDate transactionDate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "payment_status")
+    private PaymentStatus paymentStatus;
 
     @Column(name = "paid_flag")
     private Boolean paidFlag;
@@ -63,19 +64,6 @@ public class OrderEntry implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getServiceId() {
-        return serviceId;
-    }
-
-    public OrderEntry serviceId(String serviceId) {
-        this.serviceId = serviceId;
-        return this;
-    }
-
-    public void setServiceId(String serviceId) {
-        this.serviceId = serviceId;
     }
 
     public ServiceType getServiceType() {
@@ -102,6 +90,19 @@ public class OrderEntry implements Serializable {
 
     public void setTransactionDate(LocalDate transactionDate) {
         this.transactionDate = transactionDate;
+    }
+
+    public PaymentStatus getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public OrderEntry paymentStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
+        return this;
+    }
+
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 
     public Boolean isPaidFlag() {
@@ -193,9 +194,9 @@ public class OrderEntry implements Serializable {
     public String toString() {
         return "OrderEntry{" +
             "id=" + getId() +
-            ", serviceId='" + getServiceId() + "'" +
             ", serviceType='" + getServiceType() + "'" +
             ", transactionDate='" + getTransactionDate() + "'" +
+            ", paymentStatus='" + getPaymentStatus() + "'" +
             ", paidFlag='" + isPaidFlag() + "'" +
             ", totalAmount=" + getTotalAmount() +
             "}";

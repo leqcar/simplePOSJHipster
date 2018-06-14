@@ -21,6 +21,7 @@
                     <th><span>ID</span></th>
                     <th><span>Code</span></th>
                     <th><span>Product Name</span></th>
+                    <th><span>Category</span></th>
                     <th><span>Price</span></th>
                     <th><span>Quantity</span></th>
                     <th></th>
@@ -31,7 +32,8 @@
                     <td><a ui-sref="product-detail({id:product.id})">{{product.id}}</a></td>
                     <td>{{product.code}}</td>
                     <td>{{product.productName}}</td>
-                    <td>{{product.price}}</td>
+                    <td>{{product.productCategory}}</td>
+                    <td>{{product.unitPrice}}</td>
                     <td>{{product.quantity}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">

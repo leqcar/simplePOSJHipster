@@ -6,14 +6,6 @@
             "otherEntityName": "orderEntry",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "one-to-one",
-            "relationshipName": "product",
-            "otherEntityName": "product",
-            "otherEntityField": "code",
-            "ownerSide": true,
-            "otherEntityRelationshipName": "orderItem"
         }
     ],
     "fields": [
@@ -25,8 +17,8 @@
             ]
         },
         {
-            "fieldName": "price",
-            "fieldType": "BigDecimal",
+            "fieldName": "itemName",
+            "fieldType": "String",
             "fieldValidateRules": [
                 "required"
             ]
@@ -36,7 +28,7 @@
             "fieldType": "Integer"
         },
         {
-            "fieldName": "amount",
+            "fieldName": "unitAmount",
             "fieldType": "BigDecimal"
         }
     ],

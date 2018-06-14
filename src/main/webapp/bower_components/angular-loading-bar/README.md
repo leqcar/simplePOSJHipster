@@ -1,7 +1,7 @@
 angular-loading-bar
 ===================
 
-The idea is simple: Add a loading bar / progress bar whenever an XHR request goes out in angular.  Multiple requests within the same time period get bundled together such that each response increments the progress bar by the appropriate amount.
+The idea is simple: Add a loading bar / progress bar whenever an XHR request goes out in angular.  Multiple requests within the same time period get bundled together such that each response increments the progress bar by the appropriate unitAmount.
 
 This is mostly cool because you simply include it in your app, and it works.  There's no complicated setup, and no need to maintain the state of the loading bar; it's all handled automatically by the interceptor.
 
@@ -158,7 +158,7 @@ cfpLoadingBar.start();
 // It will automatically call `inc()` repeatedly to give the illusion that the page load is progressing.
 
 cfpLoadingBar.inc();
-// increments the loading bar by a random amount.
+// increments the loading bar by a random unitAmount.
 // It is important to note that the auto incrementing will begin to slow down as
 // the progress increases.  This is to prevent the loading bar from appearing
 // completed (or almost complete) before the XHR request has responded. 

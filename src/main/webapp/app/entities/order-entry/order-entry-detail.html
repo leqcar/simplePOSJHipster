@@ -4,10 +4,6 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span>Service Id</span></dt>
-        <dd>
-            <span>{{vm.orderEntry.serviceId}}</span>
-        </dd>
         <dt><span>Service Type</span></dt>
         <dd>
             <span>{{vm.orderEntry.serviceType}}</span>
@@ -15,6 +11,10 @@
         <dt><span>Transaction Date</span></dt>
         <dd>
             <span>{{vm.orderEntry.transactionDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Payment Status</span></dt>
+        <dd>
+            <span>{{vm.orderEntry.paymentStatus}}</span>
         </dd>
         <dt><span>Paid Flag</span></dt>
         <dd>

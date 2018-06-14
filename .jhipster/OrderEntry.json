@@ -18,13 +18,6 @@
     ],
     "fields": [
         {
-            "fieldName": "serviceId",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "serviceType",
             "fieldType": "ServiceType",
             "fieldValues": "PICKUP_DELIVERY,DROPOFF,SELF"
@@ -32,6 +25,11 @@
         {
             "fieldName": "transactionDate",
             "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "paymentStatus",
+            "fieldType": "PaymentStatus",
+            "fieldValues": "PAID,UNPAID"
         },
         {
             "fieldName": "paidFlag",

@@ -14,18 +14,6 @@
                     ng-model="vm.orderEntry.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" for="field_serviceId">Service Id</label>
-            <input type="text" class="form-control" name="serviceId" id="field_serviceId"
-                    ng-model="vm.orderEntry.serviceId"
-                    required/>
-            <div ng-show="editForm.serviceId.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.serviceId.$error.required">
-                    This field is required.
-                </p>
-            </div>
-        </div>
-        <div class="form-group">
             <label class="control-label" for="field_serviceType">Service Type</label>
             <select class="form-control" name="serviceType" ng-model="vm.orderEntry.serviceType" id="field_serviceType">
                 <option value="PICKUP_DELIVERY">PICKUP_DELIVERY</option>
@@ -42,6 +30,13 @@
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('transactionDate')"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
                 </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_paymentStatus">Payment Status</label>
+            <select class="form-control" name="paymentStatus" ng-model="vm.orderEntry.paymentStatus" id="field_paymentStatus">
+                <option value="PAID">Paid</option>
+                <option value="UNPAID">Un-Paid</option>
+            </select>
         </div>
         <div class="form-group">
             <label class="control-label" for="field_paidFlag">Paid Flag</label>

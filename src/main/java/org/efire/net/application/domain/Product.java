@@ -1,5 +1,6 @@
 package org.efire.net.application.domain;
 
+import org.efire.net.application.domain.enumeration.ProductCategory;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -29,8 +30,12 @@ public class Product implements Serializable {
     @Column(name = "product_name")
     private String productName;
 
-    @Column(name = "price", precision=10, scale=2)
-    private BigDecimal price;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "product_category")
+    private ProductCategory productCategory;
+
+    @Column(name = "unit_price", precision=10, scale=2)
+    private BigDecimal unitPrice;
 
     @Column(name = "quantity")
     private Integer quantity;
@@ -70,17 +75,17 @@ public class Product implements Serializable {
         this.productName = productName;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
     }
 
     public Product price(BigDecimal price) {
-        this.price = price;
+        this.unitPrice = price;
         return this;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     public Integer getQuantity() {
@@ -123,7 +128,7 @@ public class Product implements Serializable {
             "id=" + getId() +
             ", code='" + getCode() + "'" +
             ", productName='" + getProductName() + "'" +
-            ", price=" + getPrice() +
+            ", unitPrice=" + getUnitPrice() +
             ", quantity=" + getQuantity() +
             "}";
     }

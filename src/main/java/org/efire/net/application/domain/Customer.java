@@ -1,11 +1,12 @@
 package org.efire.net.application.domain;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -38,6 +39,8 @@ public class Customer implements Serializable {
 
     @Column(name = "contact_number")
     private String contactNumber;
+
+    private transient String fullName;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -101,6 +104,10 @@ public class Customer implements Serializable {
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
+    public String getFullName() {
+        return firstName.concat(StringUtils.SPACE).concat(lastName);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -129,6 +136,7 @@ public class Customer implements Serializable {
             ", firstName='" + getFirstName() + "'" +
             ", address='" + getAddress() + "'" +
             ", contactNumber='" + getContactNumber() + "'" +
+            ", fullName='" + getFullName() + "'" +
             "}";
     }
 }

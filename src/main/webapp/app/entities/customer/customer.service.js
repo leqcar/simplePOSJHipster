@@ -9,18 +9,19 @@
     function Customer ($resource) {
         var resourceUrl =  'api/customers/:id';
 
-        return $resource(resourceUrl, {}, {
-            'query': { method: 'GET', isArray: true},
-            'get': {
-                method: 'GET',
-                transformResponse: function (data) {
-                    if (data) {
-                        data = angular.fromJson(data);
-                    }
-                    return data;
-                }
-            },
-            'update': { method:'PUT' }
-        });
+        var service =  $resource(resourceUrl, {}, {
+                        'query': {method: 'GET', isArray: true},
+                        'get': {
+                            method: 'GET',
+                            transformResponse: function (data) {
+                                data = angular.fromJson(data);
+                                return data;
+                            }
+                        },
+                        'update': { method:'PUT' }
+                    });
+
+        return service;
     }
+
 })();
